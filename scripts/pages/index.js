@@ -1,37 +1,35 @@
     async function getPhotographers() {
         // Penser à remplacer par les données récupérées dans le json
         const photographers = [
-            {
-                "name": "Ma data test",
-                "id": 1,
-                "city": "Paris",
-                "country": "France",
-                "tagline": "Ceci est ma data test",
-                "price": 400,
-                "portrait": "account.png"
-            },
-            {
-                "name": "Autre data test",
-                "id": 2,
-                "city": "Londres",
-                "country": "UK",
-                "tagline": "Ceci est ma data test 2",
-                "price": 500,
-                "portrait": "account.png"
-            },
-        ]
+        await fetch("./data/photographers.json")
+        .then(function(res){
+            if(res.ok){
+                return res.json();
+            }
+        })
+        .then(function(value){
+            let result = value.photographers;
+            return  result;
+            
+        })
+        .catch(function(err){
+            console.log(err)
+        })]  
+        
         // et bien retourner le tableau photographers seulement une fois
         return ({
-            photographers: [...photographers, ...photographers, ...photographers]})
+            photographers: [photographers[0][0],photographers[0][1],photographers[0][2],photographers[0][3],photographers[0][4],photographers[0][5]]})
     }
 
     async function displayData(photographers) {
         const photographersSection = document.querySelector(".photographer_section");
-
+        /* const test = document.querySelector(".photograph-header"); */
         photographers.forEach((photographer) => {
             const photographerModel = photographerFactory(photographer);
             const userCardDOM = photographerModel.getUserCardDOM();
+            /* const photoCard = photographerModel.getPhotographersHeader(); */
             photographersSection.appendChild(userCardDOM);
+            /* test.appendChild(photoCard); */
         });
     };
 

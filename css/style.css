@@ -26,9 +26,9 @@ h1 {
 
 .photographer_section {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr;/* repeat(auto-fit, minmax(200px, 1fr)) */
     gap: 70px;
-    margin-top: 100px;
+    margin: 100px 0;
 }
 
 .photographer_section article {
@@ -42,9 +42,36 @@ h1 {
 .photographer_section article h2 {
     color: #D3573C;
     font-size: 36px;
+    white-space: nowrap;
+    margin: 5% 0 0 0;
 }
 
 .photographer_section article img {
     height: 200px;
     width: 200px;
+    border-radius: 50%;
+    object-fit: cover;
+    mix-blend-mode: screen;
 }
+.photographer_section article h4 {
+    color: #901C1C;
+    font-size: 13px;
+    margin: 2% 0;
+    font-weight: normal;
+
+}
+.photographer_section article h6{
+    font-weight: normal;
+    font-size: 10px;
+    margin: 2% 0;
+}
+.photographer_section article p{
+    font-size: 9px;
+    color: #757575;
+    margin: 2% 0;
+}
+.photographer_section a{
+    text-decoration: none;
+    text-align: center;
+}
+
