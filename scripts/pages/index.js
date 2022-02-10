@@ -23,13 +23,10 @@
 
     async function displayData(photographers) {
         const photographersSection = document.querySelector(".photographer_section");
-        /* const test = document.querySelector(".photograph-header"); */
         photographers.forEach((photographer) => {
             const photographerModel = photographerFactory(photographer);
             const userCardDOM = photographerModel.getUserCardDOM();
-            /* const photoCard = photographerModel.getPhotographersHeader(); */
             photographersSection.appendChild(userCardDOM);
-            /* test.appendChild(photoCard); */
         });
     };
 
