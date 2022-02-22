@@ -2,6 +2,10 @@
     display: none;
 }
 
+
+/*=============header==============*/
+
+
 .photograph-header {
     background-color: #FAFAFA;
     height: 300px;
@@ -33,24 +37,30 @@
     font-size: 24px;
     margin: 2% 0;
     font-weight: normal;
-
 }
+
 .photograph-header article h6{
     font-weight: normal;
     font-size: 18px;
     margin: 2% 0;
 }
+
 .photograph-header article p{
     font-size: 18px;
     color: #757575;
     margin: 2% 0;
 }
+
 .photograph-header a{
     text-decoration: none;
     text-align: center;
 }
 
-.select{
+
+/*=============trier par==============*/
+
+
+.dropdown{
     margin: 1% 100px;
     display: flex;
     justify-content: flex-start;
@@ -62,17 +72,47 @@
 .select p{
     font-weight: bold;
 }
-.select__choice{
+
+.dropdown__choice{
     background-color: #901C1C;
     color: white;
     font-size: 18px;
-    padding: 2%;
+    padding: 1em 1.5em 1em 1em;
     border-radius: 5px;
     border: none;
 }
+
+.dropdown__ul{
+    position: relative;
+}
+
+.custom__arrow{
+    display: block;
+    background: url('./../assets/icons/angle-down-solid.svg') no-repeat;
+    background-size: 50% !important;
+    background-color: #901C1C ;
+    border-radius: 5px;
+    height: 100%;
+    width: 24%;
+    position: absolute;
+    top: 0;
+    right: 0;
+    pointer-events: none;
+    background-position: center;
+    background-size: contain;
+} 
+
+/* .select__choice option{
+    background-color: #DB8876 !important;
+}
+
 .select__choice option:hover{
 background-color: #DB8876 !important;
-}
+} */
+
+
+/*=============Gallery photo==============*/
+
 
 .portfolio{
     display: flex;
@@ -87,7 +127,14 @@ background-color: #DB8876 !important;
 .portfolio__article{
     width: 25%;
     height: 400px;
-    
+}
+@media all and (max-width: 992px ){
+    .portfolio__article{
+        width: 100%;
+    }
+    .porfolio{
+        margin: 3%;
+    }
 }
 
 .portfolio__article__img{
@@ -101,6 +148,7 @@ background-color: #DB8876 !important;
     flex-shrink: 2;
     flex-basis: 0;
     border-radius: 5px;
+    cursor: pointer;
 }
 
 .portfolio__article__title{
@@ -115,17 +163,17 @@ background-color: #DB8876 !important;
     flex-direction: row;
     align-items: center;
 }
-
 .portfolio__article__title p {
     font-size: 20px;
     color: #901C1C;
 }
+
 .like{
     margin-left: 5px;
     height: 20px;
     width: 20px;
-    
 }
+
 .like-no{
     background: url("../assets/icons/dislike.svg") no-repeat ;
 }
@@ -135,14 +183,134 @@ background-color: #DB8876 !important;
     background-size: contain;
 }
 
-.sticky__info{
+
+/*=============total des likes et prix==============*/
+
+
+.sticky{
     position: -webkit-sticky;
     position: sticky;
     left: 85%;
+    bottom: 0px;
+}
+
+.sticky__info{
     background-color: #DB8876;
     padding: 1% 2%;
     border-radius: 5px 5px 0 0;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    padding: 0 2%;
+    border-radius: 5px 5px 0 0;
+    position: relative;
+    left: 78%;
+    width: 16%;
 }
+
+.sticky__info p{
+    display: flex;
+    align-items: center;
+    font-size: 19px;
+    font-weight: 500;
+    margin: 7% 2%;
+}
+
+
+/*=============lightbox==============*/
+
+
+.lightbox__container{
+    display: flex; 
+    justify-content: center;
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100vh;
+    z-index: 10;
+    /* overflow: auto; */
+    background-color: white;
+    transition: opacity .3s;
+    animation: lightboxIn ;
+}
+
+.lightbox__container.fadeOut{
+    opacity: 0;
+}
+
+.slides__box{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    margin-top: 5%;
+}
+
+.slides{
+    width: 75%;
+    max-width: 1200px;
+    
+} 
+
+.slides__media{
+    max-width: 100%;
+    height: 80vh;
+    animation: lightboxIn .5s;
+    object-fit: contain;
+}
+
+.slides__title{
+    font-size: 18px;
+}
+
+.close{
+    position: absolute;
+    top: 80px;
+    right: 25px;
+    cursor: pointer;
+    
+}
+
+.previous,
+.next {
+    cursor: pointer;
+    padding: 30px;
+    color: #901C1C;
+    font-weight: bold;
+    font-size: 40px;
+    /* transition: 0.6s ease; */
+    border-radius: 0 3px 3px 0;
+    user-select: none;
+    -webkit-user-select: none;
+    z-index: 11;
+}
+
+.slides__title{
+    font-size: 24px;
+    color: #901C1C;
+}
+
+@keyframes lightboxIn {
+    from {opacity : .5}
+    to {opacity : 1}
+}
+
+/*=============modal==============*/
+
+
+#contact_modal{
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100vh;
+    z-index: 10;
+    /* overflow: auto; */
+    background-color: rgba(255, 255, 255, 0.692);
+}
+
 .contact_button {
     font-size: 20px;
     font-weight: bold;
@@ -160,7 +328,7 @@ background-color: #DB8876 !important;
 .modal {
     border-radius: 5px;
     background-color: #DB8876;
-    width: 50%;
+    width: 30%;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -172,6 +340,7 @@ background-color: #DB8876 !important;
 .modal header {
     justify-content: space-between;
     width: 100%;
+    padding: 2% 0 10% 0;
 }
 
 .modal header img {
@@ -179,9 +348,10 @@ background-color: #DB8876 !important;
 }
 
 .modal header h2 {
-    font-size: 64px;
+    font-size: 44px;
     font-weight: normal;
-    text-align: center;
+    text-align: initial;
+    width: 80%;
 }
 
 form {
@@ -193,7 +363,7 @@ form {
 
 form label {
     color: #312E2E;
-    font-size: 36px;
+    font-size: 24px;
 }
 
 form div {
@@ -207,6 +377,13 @@ form div {
 form input {
     width: 100%;
     height: 68px;
+    border: none;
+    border-radius: 5px;
+}
+
+#message{
+    height: 170px;
+    width: 100%;
     border: none;
     border-radius: 5px;
 }

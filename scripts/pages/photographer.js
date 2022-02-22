@@ -4,6 +4,9 @@ let firstName;
 let findMedia;
 let identity;
 let getLikes = [];
+let index = [];
+let sortTitle={};
+let namePhotographer;
 
 const getPhoto = async() =>{
     
@@ -17,18 +20,22 @@ const getPhoto = async() =>{
 
         //faire correspondre l'URL avec le photographe
         identity = value.photographers.find(({id}) => id === idParam);
-
+        namePhotographer = identity.name;
         //récupérerle prénom
-        if(identity){
-            let nameSplit = identity.name.split(' ');
-            firstName = nameSplit[0];
+        let nameSplit = identity.name.split(' ');
+        firstName = nameSplit[0];
     
-        }else{
-            console.log('not true')
+        if(firstName.includes('-')){
+            let regex = /-/
+            let nameArray = firstName.split(regex);
+            firstName = nameArray.join(' ');
         }
+        
 
         //recupérer les img du photographe en fonction de l'URL
         findMedia = value.media.filter(id => id.photographerId === idParam);
+
+        index = findMedia.findIndex(obj => obj);
 
         //recupérer les likes
         findMedia.forEach((media) =>{
@@ -43,30 +50,29 @@ const getPhoto = async() =>{
 
 const photoDisplay = async ()=>{
         await getPhoto();
-        //aficher stickyCard
-        const test = userFactory(getLikes).stickyCard();
-        //main.appendChild(test)
+
+        //afficher stickyCard
+        const getAllLikes = userFactory(getLikes).stickyCard();
+        
         //afficher la card du photographe
         const userCard = userFactory(identity).getPhotographersHeader();
         photographersHeader.appendChild(userCard);
+        
+        //tri des medias
+        const sortGallery = userFactory(findMedia).sortPhoto();
 
+        const modal = domModal(namePhotographer);
+        
+        
         //afficher card des photos
-        findMedia.forEach((media) =>{
-            const photoCard = userFactory(media).getPorfolio();
+        findMedia.forEach((media, index) =>{
+            const photoCard = userFactory(media, findMedia, index).getPorfolio();
             sectionPortfolio.appendChild(photoCard);
-                
-        })
+            
+        });
+        
+        
 };
 
 photoDisplay();
 
-/* const totalLikes = ()=>{
-    let getLikes = [];
-    findMedia.forEach((media) =>{
-        getLikes.push(media.likes);
-    });
-    let getTotal = getLikes.reduce((a, b) => a + b);
-    
-    return getTotal;
-    
-} */

@@ -12,6 +12,7 @@ header {
     justify-content: space-between;
     align-items: center;
     height: 90px;
+    flex-wrap: wrap;
 }
 
 h1 {
@@ -75,3 +76,22 @@ h1 {
     text-align: center;
 }
 
+@media all and (max-width: 768px ){
+    .photographer_section{
+        grid-template-columns: 1fr;
+    }
+
+    h1 {
+        margin-right: 0px;
+    }
+    
+    .logo {
+        margin-left: 0px;
+    }
+
+    header{
+        justify-content: center;
+        margin-top: 4%;
+    }
+    
+}
