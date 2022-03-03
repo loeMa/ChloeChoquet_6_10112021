@@ -1,7 +1,3 @@
-#contact_modal {
-    display: none;
-}
-
 
 /*=============header==============*/
 
@@ -17,9 +13,9 @@
     flex-wrap: wrap;
 }
 
-.photograph-header article h2 {
+.photograph-header article h1 {
     color: #D3573C;
-    font-size: 64px;
+    font-size: 4em;
     white-space: nowrap;
     margin: 5% 0 0 0;
 }
@@ -32,21 +28,21 @@
     order: 3;
 }
 
-.photograph-header article h4 {
+.photograph-header article h2 {
     color: #901C1C;
-    font-size: 24px;
+    font-size: 1.5em;
     margin: 2% 0;
     font-weight: normal;
 }
 
-.photograph-header article h6{
+.photograph-header article h3{
     font-weight: normal;
-    font-size: 18px;
+    font-size: 1.125em;
     margin: 2% 0;
 }
 
 .photograph-header article p{
-    font-size: 18px;
+    font-size: 1.125em;
     color: #757575;
     margin: 2% 0;
 }
@@ -66,7 +62,7 @@
     justify-content: flex-start;
     align-items: center;
     column-gap: 20px;
-    font-size: 18px;
+    font-size: 1.125em;
 }
 
 .select p{
@@ -76,7 +72,7 @@
 .dropdown__choice{
     background-color: #901C1C;
     color: white;
-    font-size: 18px;
+    font-size: 1.125em;
     padding: 1em 1.5em 1em 1em;
     border-radius: 5px;
     border: none;
@@ -122,26 +118,18 @@ background-color: #DB8876 !important;
     flex-wrap: wrap;
     column-gap: 1px;
     row-gap: 20px;
+    overflow: auto;
 }
 
 .portfolio__article{
     width: 25%;
     height: 400px;
 }
-@media all and (max-width: 992px ){
-    .portfolio__article{
-        width: 100%;
-    }
-    .porfolio{
-        margin: 3%;
-    }
-}
 
 .portfolio__article__img{
     object-fit: cover;
     width: 100%;
-    height: 50%;
-    height: 80%;
+    height: 100%;
     display: flex;
     overflow: hidden;
     flex-grow: 2;
@@ -164,7 +152,7 @@ background-color: #DB8876 !important;
     align-items: center;
 }
 .portfolio__article__title p {
-    font-size: 20px;
+    font-size: 1.25em;
     color: #901C1C;
 }
 
@@ -182,7 +170,12 @@ background-color: #DB8876 !important;
     background: url("../assets/icons/like.svg") no-repeat  ;
     background-size: contain;
 }
-
+.portfolio__btn__img{
+    border: none;
+    background: none;
+    height: 80%;
+    width: 100%;
+}
 
 /*=============total des likes et prix==============*/
 
@@ -212,7 +205,7 @@ background-color: #DB8876 !important;
 .sticky__info p{
     display: flex;
     align-items: center;
-    font-size: 19px;
+    font-size: 1.188em;
     font-weight: 500;
     margin: 7% 2%;
 }
@@ -246,6 +239,7 @@ background-color: #DB8876 !important;
     align-items: center;
     justify-content: center;
     margin-top: 5%;
+    position: relative;
 }
 
 .slides{
@@ -262,15 +256,16 @@ background-color: #DB8876 !important;
 }
 
 .slides__title{
-    font-size: 18px;
+    font-size: 1.125em;
 }
 
 .close{
     position: absolute;
-    top: 80px;
-    right: 25px;
+    top: 50px;
     cursor: pointer;
-    
+    padding: 30px;
+    background: url("./../assets/icons/closeColor.svg") no-repeat center;
+    border: none;
 }
 
 .previous,
@@ -279,7 +274,7 @@ background-color: #DB8876 !important;
     padding: 30px;
     color: #901C1C;
     font-weight: bold;
-    font-size: 40px;
+    font-size: 2.5em;
     /* transition: 0.6s ease; */
     border-radius: 0 3px 3px 0;
     user-select: none;
@@ -288,9 +283,11 @@ background-color: #DB8876 !important;
 }
 
 .slides__title{
-    font-size: 24px;
+    font-size: 1.5em;
     color: #901C1C;
 }
+
+
 
 @keyframes lightboxIn {
     from {opacity : .5}
@@ -301,6 +298,7 @@ background-color: #DB8876 !important;
 
 
 #contact_modal{
+    display: none;
     position: fixed;
     left: 0;
     top: 0;
@@ -309,10 +307,13 @@ background-color: #DB8876 !important;
     z-index: 10;
     /* overflow: auto; */
     background-color: rgba(255, 255, 255, 0.692);
+    justify-content: center;
+    align-items: center;
+
 }
 
 .contact_button {
-    font-size: 20px;
+    font-size: 1.25em;
     font-weight: bold;
     color: white;
     padding: 11px;
@@ -334,7 +335,7 @@ background-color: #DB8876 !important;
     align-items: center;
     justify-content: space-between;
     padding: 35px;
-    margin: auto;
+    
 }
 
 .modal header {
@@ -343,15 +344,18 @@ background-color: #DB8876 !important;
     padding: 2% 0 10% 0;
 }
 
-.modal header img {
+.modal-close-btn {
     cursor: pointer;
+    border: none;
+    background-color: #db897600 ;
 }
 
 .modal header h2 {
-    font-size: 44px;
+    font-size: 2.75em;
     font-weight: normal;
     text-align: initial;
-    width: 80%;
+    width: 70%;
+    margin: 0;
 }
 
 form {
@@ -363,7 +367,7 @@ form {
 
 form label {
     color: #312E2E;
-    font-size: 24px;
+    font-size: 1.5em;
 }
 
 form div {
@@ -380,10 +384,72 @@ form input {
     border: none;
     border-radius: 5px;
 }
+form input:not(:placeholder-shown):not(:focus):invalid{
+    border: 2px solid #901C1C;
+}
 
 #message{
     height: 170px;
     width: 100%;
     border: none;
     border-radius: 5px;
+}
+.error{
+    color:#901C1C;
+}
+
+.no-scroll {
+    overflow: hidden;
+}
+
+/*========Media queries==========*/
+
+@media all and (max-width: 992px ){
+    .portfolio__article{
+        width: 100%;
+    }
+    .porfolio{
+        margin: 3%;
+    }
+    .modal header h2{
+        font-size: 1.875em;
+    }
+    form input{
+        height: 48px;
+    }
+    #message{
+        height: 70px;
+    }
+    .modal{
+        width: 70%;
+    }
+}
+@media all and (max-width: 768px ){
+    .portfolio{
+        margin: 6%;
+    }
+    .photograph-header{
+        margin: 0;
+        justify-content: start;
+    }
+    .contact_button{
+        width: 150px;
+        height: 50px;
+        font-size: 1.125em;
+    }
+    .photograph-header article h1 {
+        font-size: 2.75em;
+    }
+    .photograph-header img {
+        height: 150px;
+        width: 150px;
+        margin: auto;
+    }
+    .dropdown {
+        margin: 6%;
+    }
+    .sticky__info{
+        left: 0;
+        width: auto;
+    }
 }

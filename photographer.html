@@ -1,36 +1,50 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr">
   <head>
     <link href="css/style.css" rel="stylesheet" type="text/css" />
     <link href="css/photographer.css" rel="stylesheet" type="text/css" />
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1"  />
+
     <link rel="icon" type="image/png" href="assets/favicon.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="https://fonts.googleapis.com/css?family=DM+Sans&display=swap" rel="stylesheet">
     <title>Fisheye - photographe </title>
   </head>
-  <body>
+  <body id="body">
     <header>
       <a href="index.html"><img src="assets/images/logo.png"  class="logo" alt="Fisheye Home page"/></a>
     </header>
-    <main id="main">
+    <main id="main" aria-hidden="false">
       <div class="photograph-header">
-        <button class="contact_button" onclick="displayModal()">Contactez-moi</button>
+        <button class="contact_button modal-open-btn" onclick="displayModal()">Contactez-moi</button>
       </div>
 
     </main>
     <div id="contact_modal">
-			<div class="modal">
+			<div class="modal" aria-hidden="true" role="dialog" aria-describedby="Formulaire-contact">
 				<header>
-          <h2>Contactez-moi</h2>
-          <img src="assets/icons/close.svg" onclick="closeModal()" />
+          <h2 id="Formulaire-contact">Contactez-moi</h2>
+          
+          <button class="modal-close-btn" aria-label="Fermer" ><img src="assets/icons/close.svg" onclick="closeModal()"  alt="Close Contact form"  /></button>
         </header>
-				<form>
+				<form >
 					<div>
-						<label>Prénom</label>
-						<input />
+            
+						<label for="firstName" >Prénom</label>
+						<input type="text" name="firstName" id="firstName"  placeholder=" " aria-invalid="false" aria-required=true required>
+            <span class="error" id="errorFirst"></span>
+            <label for="lastName" >Nom</label> 
+            <input type="text" name="lastName" id="lastName"  placeholder=" "  aria-required=true  required>
+            <span class="error" id="errorLast"></span>
+            <label for="email" >Email</label>
+            <input name="email" id="email"  placeholder=" " type="email"  aria-required=true required>
+            <span class="error" id="errorMail"></span>
+            <label for="message" >Votre message</label>
+            <textarea name="message"  id="message"  aria-required=true  required></textarea>
+            <span class="error" id="errorMsg"></span>
 					</div>
-          <button class="contact_button">Envoyer</button>
+          <button id="contact_button" type="submit" class="contact_button">Envoyer</button>
 				</form>
 			</div>
 		</div>

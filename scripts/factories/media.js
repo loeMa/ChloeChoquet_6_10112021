@@ -13,9 +13,9 @@ selectImg.setAttribute('class', 'dropdown')
 main.appendChild(selectImg);
 
 selectImg.innerHTML = `
-<label for="dropdown__label">Trier par</label>
+<label for="photo-select">Trier par</label>
 <div class="dropdown__ul">
-    <select class="dropdown__choice" name ="typePhoto" id="photo-select">
+    <select class="dropdown__choice" name ="photo-select" id="photo-select">
         <option value="popularité">Popularité</option>
         <option value="date">Date</option>
         <option value="titre">Titre</option>
@@ -41,11 +41,11 @@ function userFactory(data, arr, index) {
         const img = document.createElement( 'img' );
         img.alt = data.name;
         img.setAttribute("src", picture);
-        const name = document.createElement( 'h2' );
+        const name = document.createElement( 'h1' );
         name.textContent = data.name;
-        const city = document.createElement( 'h4');
+        const city = document.createElement( 'h2');
         city.textContent = data.city + ", " + data.country ;
-        const tagline = document.createElement( 'h6');
+        const tagline = document.createElement( 'h3');
         tagline.textContent = data.tagline;
         photographersHeader.appendChild(article);
         photographersHeader.appendChild(img);  
@@ -62,16 +62,19 @@ function userFactory(data, arr, index) {
         const articlePortfolio = document.createElement('article');
         articlePortfolio.setAttribute('class', 'portfolio__article');
         sectionPortfolio.appendChild(articlePortfolio);
+        const linkImg = document.createElement('button');
+        linkImg.setAttribute('class', 'portfolio__btn__img');
+        articlePortfolio.appendChild(linkImg);
 
         if(portfolioImg.match("jpg")){
             const imgGallery = document.createElement( 'img' );
             imgGallery.src = portfolioImg; 
             imgGallery.classList.add('portfolio__article__img');
             imgGallery.alt = data.title;
-            imgGallery.onclick= () =>{
+            linkImg.onclick= () =>{
                 lightbox(arr, index);
             }
-            articlePortfolio.appendChild(imgGallery);
+            linkImg.appendChild(imgGallery);
             
         }else {
             const video = document.createElement( 'video' );
@@ -82,7 +85,7 @@ function userFactory(data, arr, index) {
             video.onclick= () =>{
                 lightbox(arr, index);
             }
-            articlePortfolio.appendChild(video);
+            linkImg     .appendChild(video);
         };
         
         
@@ -95,7 +98,7 @@ function userFactory(data, arr, index) {
         pTitle.textContent = data.title;
         const boxLikes = document.createElement('span');
         const countLikes = document.createElement('p');
-        countLikes.setAttribute('id', 'countLike');
+        countLikes.setAttribute('class', 'countLike');
         countLikes.textContent = totalLikes;
         const heart = document.createElement('div');
         heart.setAttribute('class', 'like like-no');
@@ -140,7 +143,7 @@ function userFactory(data, arr, index) {
     const stickyCard = () =>{
         infoDiv.innerHTML = `
         <span class="sticky__info">
-        <p>${getLikes} <img src="assets/icons/likeBlack.svg" class="like"></p>
+        <p>${getLikes} <img src="assets/icons/likeBlack.svg" class="like" alt="likes"></p>
         <p>${identity.price}€ / jour </p>
         </span>` 
         
@@ -154,27 +157,30 @@ function userFactory(data, arr, index) {
             let result = [];
             sectionPortfolio.innerHTML='';
             if(photoSelect.value === 'popularité'){
-                data.forEach(()=> {
+                
                     data.sort(function (a, b){
                         result = b.likes - a.likes;
-                        return result
-                    })
+                        return result;
                 });  
             } 
             else if(photoSelect.value === 'titre'){
-                data.forEach(()=> {
+                
                     data.sort(function (a, b){
-                        result = a.title > b.title;
-                        return result
-                    })
-                });  
+                        if(a.title > b.title){
+                            return 1;
+                        }else if(a.title < b.title){
+                            return -1;
+                        }else{
+                            return 0;
+                        }
+                });
             }
             else if(photoSelect.value === 'date'){
-                data.forEach(()=> {
+                
                     data.sort(function (a, b){
                         result = new Date(b.date) - new Date(a.date);
-                        return result
-                    })
+                        return result;
+                    
                 });  
             };  
             data.forEach((media, index, arr)=>{
@@ -189,6 +195,7 @@ function userFactory(data, arr, index) {
 
             //DOM Element
             const lightboxContainer = document.createElement('div');
+            lightboxContainer.id = "lightboxContainer";
             lightboxContainer.classList.add('lightbox__container');
             document.body.appendChild(lightboxContainer);
 
@@ -204,7 +211,7 @@ function userFactory(data, arr, index) {
             const divTitle = document.createElement('div');
             const slideTitle = document.createElement('p');
             const nextDiv = document.createElement('div');
-            const closeImg = document.createElement('img');
+            const closeSlides = document.createElement('button');
             const nextBtn = document.createElement('a'); 
             
             slidesBox.appendChild(previousBtn);
@@ -213,98 +220,107 @@ function userFactory(data, arr, index) {
             // Pour mettre soit <img> soit <video>
             const whichMedia = () =>{ 
             if(data.image ){
-                console.log(data)
+                slidesVideo.remove();
                 slidesPhoto.setAttribute('src', `assets/images/${firstName}/${data.image}`);
                 slidesPhoto.alt = data.title;
+                slideTitle.innerHTML = data.title;
                 slides.appendChild(slidesPhoto);
+                slides.appendChild(divTitle);
                 
             }else {
+                slidesPhoto.remove();
                 slidesVideo.src = `assets/images/${firstName}/${data.video}`;
-                slidesVideo.setAttribute("controls", "controls")
+                slidesVideo.setAttribute("controls", "controls");
+                slideTitle.innerHTML = data.title;
                 slides.appendChild(slidesVideo);
+                slides.appendChild(divTitle);
             }  
         }   
             //mise en place des el DOM
             whichMedia();
-            slides.appendChild(divTitle);
+            
             divTitle.appendChild(slideTitle);
             slidesBox.appendChild(nextDiv);
-            nextDiv.appendChild(closeImg);
+            nextDiv.appendChild(closeSlides);
             nextDiv.appendChild(nextBtn);
 
-            //Ajouts des attributs
+            //Ajouts des attributs et class
             previousBtn.classList.add('previous');
+            previousBtn.role = 'button';
             previousBtn.innerHTML = "&#10094";
             slides.classList.add('slides');
             slidesPhoto.classList.add('slides__media');
             slidesVideo.classList.add('slides__media');
             divTitle.classList.add('slides__title');
             slideTitle.id = 'title';
-            closeImg.classList.add('close');
-            closeImg.alt = 'close dialog';
-            closeImg.src = './../assets/icons/close.svg';
+            closeSlides.classList.add('close');
+            closeSlides.alt = 'close dialog';
+            closeSlides.setAttribute('aria-label',"Fermer") ;
+            closeSlides.src = './../assets/icons/closeColor.svg';
             nextBtn.classList.add('next');
+            nextBtn.role = "button";
             nextBtn.innerHTML = "&#10095";
-            slideTitle.innerHTML = data.title;
-
             
+
+            main.setAttribute('aria-hidden', 'true');
+            body.classList.add('no-scroll');
+            closeSlides.focus();
+            //Evenement au clavier Next
+            document.body.addEventListener('keydown', (e)=>{
+                
+
+                if (e.code === 'ArrowRight') {
+                    
+                    nextSlide()
+                } else if (e.code === 'ArrowLeft') {
+                    previousSlide()
+                } else if(e.code === 'Escape'){
+                    closeLightbox();
+                }
+            })
+
 
             //Evement sur le click de Next
             nextBtn.onclick = (e) =>{  
-                lightboxContainer.remove();
+                console.log(e)
+                nextSlide();
+            };
+            //Evement sur le click de Previous
+            previousBtn.onclick = () =>{ 
+                previousSlide()
+            };
+
+
+            //fonction pour passer d'une slide à l'autre
+            const nextSlide = ()=>{
                 i++;
                 if(i >= arr.length){
                     i = 0;
                 }
                 data = arr[i];
-                return  lightbox(arr, i);
-            };
-            //Evement sur le click de Previous
-            previousBtn.onclick = () =>{ 
-                lightboxContainer.remove();
+                return  whichMedia(arr, i);
+            }
+
+            const previousSlide = () =>{
                 i--;
                 console.log(arr[i]);
                 if(i < 0){
                     i = arr.length-1
                 }
                 data = arr[i];
-                return lightbox(arr, i);
-            };
-            /* lightboxContainer.innerHTML = `
-            <div class="slides__box">
-                <a class="previous">&#10094;</a>
-                <div class="slides" >
-                    <img class="slides__media" data-video-src="${link}" >
-                    <div class="slides__title">
-                    <p id="title">${data.title}<p>
-                </div>
-                </div>
-                <div>
-                    <span class="close"><img src="./../assets/icons/close.svg" alt="close dialog"></span>
-                    <a class="next">&#10095;</a>
-                </div>
-            </div>
-            
-            `;  */ 
-
-            //fermeture du modal Lightbox
-            closeImg.onclick = () =>{
-                
-                lightboxContainer.remove()
+                return whichMedia(arr, i);
             }
             
-        
+            //fermeture du modal Lightbox
+            closeSlides.onclick = () =>{
+                closeLightbox();
+            }
+            const closeLightbox = ()=>{
+                main.setAttribute('aria-hidden', 'false');
+                body.classList.remove('no-scroll');
+                lightboxContainer.remove();
+            }
         };
-        
-
-        
-        function closeLightbox(){
-            
-            
-            document.querySelector('.lightbox__container').classList.add('fadeOut');
-            /* document.querySelector('.lightbox__container').style.display = "none"; */
-            
-        }
 
     return {  getPhotographersHeader, getPorfolio, stickyCard, sortPhoto}
 }
