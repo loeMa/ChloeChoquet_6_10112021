@@ -1,3 +1,4 @@
+
 const modal = document.getElementById("contact_modal");
 const body = document.getElementById("body");
 const modalCloseBtn = document.querySelector('.modal-close-btn');
@@ -31,7 +32,7 @@ modal.addEventListener("keydown", (e)=>{
 
 const headerModal = document.querySelector('.modal > header>h2');
 const form = document.querySelector('form');
-const sendBtn = document.querySelector('#contact_button');
+
 const inputs = document.querySelectorAll("input[type = 'text'], input[type = 'email'], textarea")
 let firstData, lastData, mailData, msgData;
 
@@ -89,9 +90,8 @@ inputs.forEach((input) => input.addEventListener("input", (e) =>{
 
 const firstNameModale = document.getElementById('firstName');
 const lastNameModale = document.getElementById('lastName');
-const emailModale = document.getElementById('email');
 const messageModale = document.getElementById('message');
-const nameRegex = /^[a-zA-Z\-]+$/
+const nameRegex = /^[a-zA-Z-]+$/
 
 
 const firstCheck = (value) =>{

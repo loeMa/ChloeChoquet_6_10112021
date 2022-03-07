@@ -90,7 +90,7 @@ function userFactory(data, arr, index) {
             }
             linkImg.appendChild(video);
             
-        };
+        }
         
         
         let totalLikes = data.likes;
