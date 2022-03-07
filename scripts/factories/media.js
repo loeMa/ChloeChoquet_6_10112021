@@ -72,6 +72,7 @@ function userFactory(data, arr, index) {
             imgGallery.src = portfolioImg; 
             imgGallery.classList.add('portfolio__article__img');
             imgGallery.alt = data.title;
+            linkImg.setAttribute('aria-label', `lien vers l'image ${data.title}`)
             linkImg.onclick= () =>{
                 lightbox(arr, index);
             }
@@ -79,16 +80,16 @@ function userFactory(data, arr, index) {
             
         }else {
             const video = document.createElement( 'video' );
-            const sourceVid = document.createElement('source');
-            sourceVid.src = portfolioVideo; 
+            video.src = portfolioVideo; 
             video.setAttribute('type', 'video/mp4');
             video.classList.add('portfolio__article__img');
             video.alt = data.title;
+            linkImg.setAttribute('aria-label', 'lien vers la video');
             linkImg.onclick= () =>{
                 lightbox(arr, index);
             }
             linkImg.appendChild(video);
-            video.appendChild(sourceVid);
+            
         };
         
         
@@ -254,6 +255,7 @@ function userFactory(data, arr, index) {
             previousBtn.classList.add('previous');
             previousBtn.role = 'button';
             previousBtn.innerHTML = "&#10094";
+            previousBtn.setAttribute('aria-label', 'media précédent')
             slides.classList.add('slides');
             slidesPhoto.classList.add('slides__media');
             slidesVideo.classList.add('slides__media');
@@ -264,10 +266,10 @@ function userFactory(data, arr, index) {
             closeSlides.setAttribute('aria-label',"Fermer") ;
             closeSlides.src = './../assets/icons/closeColor.svg';
             nextBtn.classList.add('next');
-            nextBtn.role = "button";
+            nextBtn.setAttribute('aria-label', 'media suivant');
             nextBtn.innerHTML = "&#10095";
 
-            main.setAttribute('aria-hidden', 'true');
+            //main.setAttribute('aria-hidden', 'true');
             main.style.display = 'none';
             body.classList.add('no-scroll');
             
@@ -318,7 +320,7 @@ function userFactory(data, arr, index) {
                 closeLightbox();
             }
             const closeLightbox = ()=>{
-                main.setAttribute('aria-hidden', 'false');
+                //main.setAttribute('aria-hidden', 'false');
                 main.style.display = 'block';
                 body.classList.remove('no-scroll');
                 lightboxContainer.remove();
