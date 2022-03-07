@@ -86,36 +86,37 @@ inputs.forEach((input) => input.addEventListener("input", (e) =>{
     }
 }))
 
-const errorFirst = document.getElementById('errorFirst');
-const errorLast = document.getElementById('errorLast');
-const errorMail = document.getElementById('errorMail');
-const errorMsg = document.getElementById('errorMsg');
+
+const firstNameModale = document.getElementById('firstName');
+const lastNameModale = document.getElementById('lastName');
+const emailModale = document.getElementById('email');
+const messageModale = document.getElementById('message');
 const nameRegex = /^[a-zA-Z\-]+$/
+
 
 const firstCheck = (value) =>{
     console.log(value)
     if(value.length < 3){
-        errorFirst.parentNode.setAttribute('aria-invalid', "true")
-        errorFirst.innerHTML = "Vous devez entrez un prenom de minimun 3 lettres";
+        firstNameModale.setCustomValidity('Vous devez entrez un prenom de minimun 3 lettres');
         firstData = null;
     }else if(!value.match(nameRegex)){
-        errorFirst.innerHTML = "Vous devez entrez un prenom avec des lettres";
+        firstNameModale.setCustomValidity('Vous devez entrez un prenom avec des lettres');
         firstData = null;
     } else{
-        errorFirst.innerHTML = " ";
+        firstNameModale.setCustomValidity('');
         firstData = value
     }
 }
 
 const lastCheck = (value) =>{
     if(value.length < 3){
-        errorLast.innerHTML = "Vous devez entrez un prenom de minimun 3 lettres";
+        lastNameModale.setCustomValidity('Vous devez entrez un nom de minimun 3 lettres');
         lastData = null;
     }else if(!value.match(nameRegex)){
-        errorLast.innerHTML = "Vous devez entrez un prenom avec des lettres";
+        lastNameModale.setCustomValidity('Vous devez entrez un nom avec des lettres');
         lastData = null;
     }else{
-        errorLast.innerHTML = " ";
+        lastNameModale.setCustomValidity('');
         lastData = value
 }
 }
@@ -126,10 +127,10 @@ const emailCheck = (value) =>{
 
 const msgCheck = (value) =>{
     if(value.length < 2){
-        errorMsg.innerHTML = "Merci d'écrire un message";
+        messageModale.setCustomValidity('Merci d\'écrire un message plus long');
         msgData = null;
     }else{
-        errorMsg.innerHTML = " ";
+        messageModale.setCustomValidity('');
         msgData = value
     }
     

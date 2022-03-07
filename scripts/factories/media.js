@@ -40,7 +40,7 @@ function userFactory(data, arr, index) {
         const picture = `assets/photographers/PhotographersID/${data.portrait}`;
         const article = document.createElement( 'article' );
         const img = document.createElement( 'img' );
-        img.alt = data.name;
+        img.alt = `photo profil de ${data.name}`;
         img.setAttribute("src", picture);
         const name = document.createElement( 'h1' );
         name.textContent = data.name;
@@ -71,7 +71,7 @@ function userFactory(data, arr, index) {
             const imgGallery = document.createElement( 'img' );
             imgGallery.src = portfolioImg; 
             imgGallery.classList.add('portfolio__article__img');
-            imgGallery.alt = data.title;
+            imgGallery.alt = `photo ${data.title}`;
             linkImg.setAttribute('aria-label', `lien vers l'image ${data.title}`)
             linkImg.onclick= () =>{
                 lightbox(arr, index);
@@ -83,7 +83,7 @@ function userFactory(data, arr, index) {
             video.src = portfolioVideo; 
             video.setAttribute('type', 'video/mp4');
             video.classList.add('portfolio__article__img');
-            video.alt = data.title;
+            video.title = `video ${data.title}`;
             linkImg.setAttribute('aria-label', 'lien vers la video');
             linkImg.onclick= () =>{
                 lightbox(arr, index);
@@ -104,8 +104,9 @@ function userFactory(data, arr, index) {
         const countLikes = document.createElement('p');
         countLikes.setAttribute('class', 'countLike');
         countLikes.textContent = totalLikes;
-        const heart = document.createElement('div');
+        const heart = document.createElement('button');
         heart.setAttribute('class', 'like like-no');
+        heart.setAttribute('title', 'Likes');
         heart.setAttribute('aria-label', 'Likes');
         heart.onclick= (event) =>{
             buttonLike(event)
