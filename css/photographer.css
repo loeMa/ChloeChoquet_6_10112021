@@ -78,6 +78,10 @@
     border: none;
 }
 
+.dropdown__choice:focus-visible{
+    outline: 3px dashed #000000;
+}
+
 .dropdown__ul{
     position: relative;
 }
@@ -98,21 +102,16 @@
     background-size: contain;
 } 
 
-/* .select__choice option{
-    background-color: #DB8876 !important;
+.custom__arrow:active{
+    transform: scaleY(-1);
 }
-
-.select__choice option:hover{
-background-color: #DB8876 !important;
-} */
-
 
 /*=============Gallery photo==============*/
 
 
 .portfolio{
     display: flex;
-    margin: 3% 100px;
+    margin: 3% 90px;
     flex-direction: row;
     justify-content: space-between;
     flex-wrap: wrap;
@@ -124,6 +123,7 @@ background-color: #DB8876 !important;
 .portfolio__article{
     width: 25%;
     height: 400px;
+    margin: 10px;
 }
 
 .portfolio__article__img{
@@ -132,11 +132,17 @@ background-color: #DB8876 !important;
     height: 100%;
     display: flex;
     overflow: hidden;
-    flex-grow: 2;
-    flex-shrink: 2;
-    flex-basis: 0;
     border-radius: 5px;
     cursor: pointer;
+}
+
+.portfolio__article__img:hover{
+    transform: scale(1.05) ;
+    transition: transform 500ms;
+}
+
+.portfolio__btn__img:focus-visible{
+    outline: 3px dashed #901C1C;
 }
 
 .portfolio__article__title{
@@ -175,6 +181,7 @@ background-color: #DB8876 !important;
     background: none;
     height: 80%;
     width: 100%;
+        
 }
 
 /*=============total des likes et prix==============*/
@@ -275,19 +282,18 @@ background-color: #DB8876 !important;
     color: #901C1C;
     font-weight: bold;
     font-size: 2.5em;
-    /* transition: 0.6s ease; */
     border-radius: 0 3px 3px 0;
     user-select: none;
     -webkit-user-select: none;
     z-index: 11;
+    background: none;
+    border: none;
 }
 
 .slides__title{
     font-size: 1.5em;
     color: #901C1C;
 }
-
-
 
 @keyframes lightboxIn {
     from {opacity : .5}
@@ -305,7 +311,7 @@ background-color: #DB8876 !important;
     width: 100%;
     height: 100vh;
     z-index: 10;
-    /* overflow: auto; */
+    overflow: auto; 
     background-color: rgba(255, 255, 255, 0.692);
     justify-content: center;
     align-items: center;
@@ -324,6 +330,10 @@ background-color: #DB8876 !important;
     border-radius: 5px;
     cursor: pointer;
     order: 2;
+}
+
+.contact_button:focus-visible{
+    outline: 3px dashed #000000;
 }
 
 .modal {

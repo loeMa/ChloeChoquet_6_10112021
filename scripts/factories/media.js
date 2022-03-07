@@ -16,6 +16,7 @@ selectImg.innerHTML = `
 <label for="photo-select">Trier par</label>
 <div class="dropdown__ul">
     <select class="dropdown__choice" name ="photo-select" id="photo-select">
+        <option style="display: none">-- Choisir --</option>
         <option value="popularité">Popularité</option>
         <option value="date">Date</option>
         <option value="titre">Titre</option>
@@ -78,14 +79,16 @@ function userFactory(data, arr, index) {
             
         }else {
             const video = document.createElement( 'video' );
-            video.src = portfolioVideo; 
+            const sourceVid = document.createElement('source');
+            sourceVid.src = portfolioVideo; 
             video.setAttribute('type', 'video/mp4');
             video.classList.add('portfolio__article__img');
             video.alt = data.title;
-            video.onclick= () =>{
+            linkImg.onclick= () =>{
                 lightbox(arr, index);
             }
-            linkImg     .appendChild(video);
+            linkImg.appendChild(video);
+            video.appendChild(sourceVid);
         };
         
         
@@ -203,16 +206,17 @@ function userFactory(data, arr, index) {
             const slidesBox = document.createElement("div");
             slidesBox.classList.add('slides__box');
             lightboxContainer.appendChild(slidesBox);
-            const previousBtn = document.createElement('a');
+            const previousBtn = document.createElement('button');
             const slides = document.createElement('div');
             
             const slidesPhoto = document.createElement('img');
             const slidesVideo = document.createElement('video');
+            const sourceVid = document.createElement('source');
             const divTitle = document.createElement('div');
             const slideTitle = document.createElement('p');
             const nextDiv = document.createElement('div');
             const closeSlides = document.createElement('button');
-            const nextBtn = document.createElement('a'); 
+            const nextBtn = document.createElement('button'); 
             
             slidesBox.appendChild(previousBtn);
             slidesBox.appendChild(slides);  
@@ -229,10 +233,12 @@ function userFactory(data, arr, index) {
                 
             }else {
                 slidesPhoto.remove();
-                slidesVideo.src = `assets/images/${firstName}/${data.video}`;
+                sourceVid.src = `assets/images/${firstName}/${data.video}`;
+                sourceVid.type = "video/mp4";
                 slidesVideo.setAttribute("controls", "controls");
                 slideTitle.innerHTML = data.title;
                 slides.appendChild(slidesVideo);
+                slidesVideo.appendChild(sourceVid);
                 slides.appendChild(divTitle);
             }  
         }   
@@ -260,29 +266,25 @@ function userFactory(data, arr, index) {
             nextBtn.classList.add('next');
             nextBtn.role = "button";
             nextBtn.innerHTML = "&#10095";
-            
 
             main.setAttribute('aria-hidden', 'true');
+            main.style.display = 'none';
             body.classList.add('no-scroll');
-            closeSlides.focus();
+            
+
             //Evenement au clavier Next
             document.body.addEventListener('keydown', (e)=>{
-                
-
                 if (e.code === 'ArrowRight') {
-                    
-                    nextSlide()
+                    nextSlide();
                 } else if (e.code === 'ArrowLeft') {
-                    previousSlide()
+                    previousSlide();
                 } else if(e.code === 'Escape'){
                     closeLightbox();
                 }
             })
 
-
             //Evement sur le click de Next
             nextBtn.onclick = (e) =>{  
-                console.log(e)
                 nextSlide();
             };
             //Evement sur le click de Previous
@@ -317,6 +319,7 @@ function userFactory(data, arr, index) {
             }
             const closeLightbox = ()=>{
                 main.setAttribute('aria-hidden', 'false');
+                main.style.display = 'block';
                 body.classList.remove('no-scroll');
                 lightboxContainer.remove();
             }

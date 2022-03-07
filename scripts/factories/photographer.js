@@ -35,8 +35,3 @@ function photographerFactory(data) {
     return { name, picture, getUserCardDOM  }
 }
 
-/* function headerPhotographers(data){
-    const{ name, portrait, city, country, tagline} = data;
-
-
-} */
