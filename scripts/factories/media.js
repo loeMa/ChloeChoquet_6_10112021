@@ -308,7 +308,6 @@ function userFactory(data, arr, index) {
 
             const previousSlide = () =>{
                 i--;
-                console.log(arr[i]);
                 if(i < 0){
                     i = arr.length-1
                 }

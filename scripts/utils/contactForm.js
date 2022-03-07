@@ -38,7 +38,6 @@ let firstData, lastData, mailData, msgData;
 
 const domModal = (data) =>{
 headerModal.innerHTML += ` ${data}`
-    console.log(data)
 }
 
 form.addEventListener('submit', (e)=>{
@@ -70,10 +69,10 @@ form.addEventListener('submit', (e)=>{
 
 inputs.forEach((input) => input.addEventListener("input", (e) =>{
     switch(e.target.id){
-        case "firstName":
+        case "firstNameModale":
             firstCheck(e.target.value);
             break;
-        case "lastName":
+        case "lastNameModale":
             lastCheck(e.target.value);
             break;
         case "email":
@@ -88,8 +87,8 @@ inputs.forEach((input) => input.addEventListener("input", (e) =>{
 }))
 
 
-const firstNameModale = document.getElementById('firstName');
-const lastNameModale = document.getElementById('lastName');
+const firstNameModale = document.getElementById('firstNameModale');
+const lastNameModale = document.getElementById('lastNameModale');
 const messageModale = document.getElementById('message');
 const nameRegex = /^[a-zA-Z-]+$/
 
