@@ -70,10 +70,11 @@ form.addEventListener('submit', (e)=>{
     
 })
 
-inputs.forEach((input) => input.addEventListener("input", (e) =>{
+inputs.forEach((input) => input.addEventListener("change", (e) =>{
     switch(e.target.id){
         case "firstNameModal":
             firstCheck(e.target.value);
+            
             break;
         case "lastNameModal":
             lastCheck(e.target.value);
