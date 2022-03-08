@@ -22,8 +22,6 @@ function closeModal() {
 }
 
 modal.addEventListener("keydown", (e)=>{
-    console.log(e)
-    
     if( e.code === 'Escape'){
         closeModal();
     }
@@ -69,10 +67,10 @@ form.addEventListener('submit', (e)=>{
 
 inputs.forEach((input) => input.addEventListener("input", (e) =>{
     switch(e.target.id){
-        case "firstNameModale":
+        case "firstNameModal":
             firstCheck(e.target.value);
             break;
-        case "lastNameModale":
+        case "lastNameModal":
             lastCheck(e.target.value);
             break;
         case "email":
@@ -87,35 +85,35 @@ inputs.forEach((input) => input.addEventListener("input", (e) =>{
 }))
 
 
-const firstNameModale = document.getElementById('firstNameModale');
-const lastNameModale = document.getElementById('lastNameModale');
-const messageModale = document.getElementById('message');
+const firstNameModal = document.getElementById('firstNameModal');
+const lastNameModal = document.getElementById('lastNameModal');
+const messageModal = document.getElementById('message');
 const nameRegex = /^[a-zA-Z-]+$/
 
 
 const firstCheck = (value) =>{
     console.log(value)
     if(value.length < 3){
-        firstNameModale.setCustomValidity('Vous devez entrez un prenom de minimun 3 lettres');
+        firstNameModal.setCustomValidity('Vous devez entrez un prenom de minimun 3 lettres');
         firstData = null;
     }else if(!value.match(nameRegex)){
-        firstNameModale.setCustomValidity('Vous devez entrez un prenom avec des lettres');
+        firstNameModal.setCustomValidity('Vous devez entrez un prenom avec des lettres');
         firstData = null;
     } else{
-        firstNameModale.setCustomValidity('');
+        firstNameModal.setCustomValidity('');
         firstData = value
     }
 }
 
 const lastCheck = (value) =>{
     if(value.length < 3){
-        lastNameModale.setCustomValidity('Vous devez entrez un nom de minimun 3 lettres');
+        lastNameModal.setCustomValidity('Vous devez entrez un nom de minimun 3 lettres');
         lastData = null;
     }else if(!value.match(nameRegex)){
-        lastNameModale.setCustomValidity('Vous devez entrez un nom avec des lettres');
+        lastNameModal.setCustomValidity('Vous devez entrez un nom avec des lettres');
         lastData = null;
     }else{
-        lastNameModale.setCustomValidity('');
+        lastNameModal.setCustomValidity('');
         lastData = value
 }
 }
@@ -126,10 +124,10 @@ const emailCheck = (value) =>{
 
 const msgCheck = (value) =>{
     if(value.length < 2){
-        messageModale.setCustomValidity('Merci d\'écrire un message plus long');
+        messageModal.setCustomValidity('Merci d\'écrire un message plus long');
         msgData = null;
     }else{
-        messageModale.setCustomValidity('');
+        messageModal.setCustomValidity('');
         msgData = value
     }
     
