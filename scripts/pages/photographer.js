@@ -1,4 +1,7 @@
+/* eslint-disable no-unused-vars */
 //Mettre le code JavaScript lié à la page photographer.html
+/*global userFactory, domModal, photographersHeader, sectionPortfolio*/
+
 
 let firstName;
 let findMedia;

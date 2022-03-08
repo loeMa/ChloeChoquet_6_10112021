@@ -1,3 +1,6 @@
+/* eslint-disable no-unused-vars */
+/*global main*/
+
 
 const modal = document.getElementById("contact_modal");
 const body = document.getElementById("body");

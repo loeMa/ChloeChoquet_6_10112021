@@ -1,3 +1,7 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable no-global-assign */
+/*global firstName, getLikes, identity, body*/
+
 const main = document.getElementById("main");
 const photographersHeader = document.querySelector(".photograph-header");
 const sectionPortfolio = document.createElement("section");
@@ -187,7 +191,7 @@ function userFactory(data, arr, index) {
                         return result;
                     
                 });  
-            };  
+            }
             data.forEach((media, index, arr)=>{
                 userFactory(media,arr, index).getPorfolio();
                 
