@@ -24,10 +24,6 @@ function closeModal() {
     console.log('fermer')
 }
 
-function domModal(data){
-    headerModal.innerHTML += ` ${data}`
-    }
-
 modal.addEventListener("keydown", (e)=>{
     if( e.code === 'Escape'){
         closeModal();
@@ -41,7 +37,9 @@ const form = document.querySelector('form');
 const inputs = document.querySelectorAll("input[type = 'text'], input[type = 'email'], textarea")
 let firstData, lastData, mailData, msgData;
 
-
+const domModal = (data) =>{
+headerModal.innerHTML += ` ${data}`
+}
 
 form.addEventListener('submit', (e)=>{
     e.preventDefault();
@@ -70,11 +68,10 @@ form.addEventListener('submit', (e)=>{
     
 })
 
-inputs.forEach((input) => input.addEventListener("change", (e) =>{
+inputs.forEach((input) => input.addEventListener("input", (e) =>{
     switch(e.target.id){
         case "firstNameModal":
             firstCheck(e.target.value);
-            
             break;
         case "lastNameModal":
             lastCheck(e.target.value);
